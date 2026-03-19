@@ -1,0 +1,52 @@
+{
+    "statusLine": {
+        "type": "command",
+        "command": "~/.claude/statusline.sh"
+    },
+    "spinnerVerbs": {
+        "mode": "replace",
+        "verbs": [
+            "Crying in academic",
+            "Checking if this could have been an email",
+            "Procesando el chisme",
+            "As per my last response, I'm still thinking",
+            "Chasing the PI for a signature",
+            "Buscando tu sentido común (no se le ve por ningún lado)",
+            "Overthinking in 4K",
+            "Writing 'Future work' (the lies we tell)",
+            "Trying to care as much as you do (unsuccessfully)",
+            "Echándole ganas (pero poquitas)",
+            "No me desesperes, me da amsiedá",
+            "Manifesting a coherent thought",
+            "Surviving on departmental biscuits",
+            "Peer-reviewing my own sanity",
+            "Searching for your lost neurons",
+            "Buscando la lógica (no hay)",
+            "Fixing your logic, güey",
+            "Waiting for the simulation to converge",
+            "Procesando tus maryjanes",
+            "Querying the void (the void said hi)",
+            "Pretending to have a plan",
+            "Aguántame, hdtpm. Bájale dos rayitas a tu intensidad",
+            "Otra vez con lo mismo, de verdad",
+            "No soy una perra, pero guau",
+            "Consultando con la almohada digital",
+            "Trying to focus, pero el lag",
+            "Fighting with the API y perdiendo.",
+            "Re-reading this because it made no sense",
+            "Refining response architecture",
+            "Staring at the spreadsheet until it makes sense",
+            "Wondering where the grant money went",
+            "Submitting to a journal (it's getting rejected)",
+            "Polishing the abstract for the 10th time",
+            "Pretending I've read all 200 tabs",
+            "Navigating the bureaucracy",
+            "Iterating through hypotheses",
+            "Assuming you're joking with this prompt",
+            "I mean, yeah, sure",
+            "I heard the first 3 times you asked",
+            "Are you aware of how much water this stupid prompt uses?"
+        ]
+    },
+    "effortLevel": "high"
+}
