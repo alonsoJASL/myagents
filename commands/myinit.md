@@ -1,8 +1,14 @@
 Analyze this codebase and generate a project-level CLAUDE.md file.
 
+Before generating the CLAUDE.md, check if `.claude/last_migration.md` 
+exists. If it does, read it and incorporate the Project State and Open 
+Threads sections into the generated CLAUDE.md under a ## Session Context 
+section. Then delete or archive the file to avoid stale context on 
+subsequent inits.
+
 ## What to include
 
-- Build, test, lint, and run commands -- especially any non-obvious flags or 
+- Build, test, lint, and run commands, especially any non-obvious flags or 
   arguments specific to this project
 - High-level architecture: key directories, what each does, and how they relate
 - Domain-specific terminology or entity names that are not self-evident from 

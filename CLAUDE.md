@@ -30,6 +30,8 @@ explicitly injected. This ensures portability across dev, CI, and production.
 until there are three distinct use cases. Code duplication is cheaper than the 
 wrong abstraction.
 
-**Favor readable and traceable over clever and terse.**
+## General directives
 
-**Before implementing anything, write a plan and wait for explicit approval**
++ Favor readable and traceable over clever and terse.
++ Before implementing anything, write a plan and wait for explicit approval
++ When context window usage exceeds 80%, warn me before taking any compaction action and suggest running /context_migration first.
