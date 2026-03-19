@@ -31,3 +31,5 @@ until there are three distinct use cases. Code duplication is cheaper than the
 wrong abstraction.
 
 **Favor readable and traceable over clever and terse.**
+
+**Before implementing anything, write a plan and wait for explicit approval**
