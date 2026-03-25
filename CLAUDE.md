@@ -35,3 +35,9 @@ wrong abstraction.
 + Favor readable and traceable over clever and terse.
 + Before implementing anything, write a plan and wait for explicit approval
 + When context window usage exceeds 80%, warn me before taking any compaction action and suggest running /context_migration first.
+
+## Tools
+
+`packer` — concatenates project files into a single labeled text file.
+Usage: `packer -o output.txt -r /path/to/project --no-interactive`
+Use this when asked to generate or refresh context files for a project.
