@@ -1,25 +1,32 @@
-#!/bin/bash
-# Claude Code status line - displays session usage in VSCode interface
-
+#!/usr/bin/env bash
 input=$(cat)
 
-MODEL=$(echo "$input" | jq -r '.model.display_name // "Claude"')
-COST=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
-TOKENS_IN=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
-TOKENS_OUT=$(echo "$input" | jq -r '.context_window.total_output_tokens // 0')
-PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | awk '{printf "%d", $1}')
-DURATION_MS=$(echo "$input" | jq -r '.cost.total_duration_ms // 0')
+cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd // ""')
+model=$(echo "$input" | jq -r '.model.display_name // ""')
+used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+five_h=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+week=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
 
-# Format cost
-COST_FMT=$(printf "%.4f" "$COST")
+dir_part=$(basename "$cwd")
 
-# Format duration
-MINS=$(( DURATION_MS / 60000 ))
-SECS=$(( (DURATION_MS % 60000) / 1000 ))
+parts=()
+separator=" | "
 
-# Build context progress bar (10 chars)
-FILLED=$(( PCT * 10 / 100 ))
-EMPTY=$(( 10 - FILLED ))
-BAR=$(printf '%0.s█' $(seq 1 $FILLED 2>/dev/null) 2>/dev/null)$(printf '%0.s░' $(seq 1 $EMPTY 2>/dev/null) 2>/dev/null)
+[ -n "$dir_part" ] && parts+=("$dir_part")
+[ -n "$model" ] && parts+=("$model")
 
-echo "[$MODEL] | ctx: $BAR ${PCT}% | in: ${TOKENS_IN} / out: ${TOKENS_OUT} | cost: \$${COST_FMT} | time: ${MINS}m${SECS}s"
+if [ -n "$used" ]; then
+  parts+=("context :$(printf '%.0f' "$used")% $separator ")
+fi
+
+rate_part=""
+if [ -n "$five_h" ]; then
+  rate_part="5h:$(printf '%.0f' "$five_h")% $separator "
+fi
+if [ -n "$week" ]; then
+  [ -n "$rate_part" ] && rate_part="$rate_part "
+  rate_part="${rate_part}7d:$(printf '%.0f' "$week")% $separator "
+fi
+[ -n "$rate_part" ] && parts+=("$rate_part")
+
+printf '%s' "$(IFS=' | '; echo "${parts[*]}")"
