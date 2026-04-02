@@ -3,9 +3,6 @@
     "type": "command",
     "command": "bash -c '$HOME/.claude/statusline.sh'"
   },
-  "notebooklm-mcp": {
-    "command": "notebooklm-mcp"
-  },
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
@@ -51,5 +48,9 @@
       "Are you aware of how much water this stupid prompt uses?"
     ]
   },
-  "effortLevel": "medium"
+  "effortLevel": "medium",
+  "notebooklm-mcp": {
+    "command": "notebooklm-mcp"
+  },
+  "model": "haiku"
 }
