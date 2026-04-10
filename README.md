@@ -2,6 +2,25 @@
 
 Personal Claude Code configuration and workflow tooling.
 
+## Install
+The best way is to symlink the contents of this folder into your own `~/.claude`
+directory.
+
+```bash
+git clone https://github.com/alonsoJASL/myagents 
+cd /path/to/myagents 
+
+mkdir -p ~/.claude/commands # just in case it's not there 
+
+# do one by one 
+ln -s $PWD/CLAUDE.md ~/.claude/ 
+
+ln -s $PWD/commands/myinit.md ~/.claude/commands/ 
+ln -s $PWD/commands/context_migration.md ~/.claude/commands/ 
+ln -s $PWD/commands/export-api.md ~/.claude/commands/ 
+ln -s $PWD/commands/import-api.md ~/.claude/commands/ 
+```
+
 ## What's here
 
 | File/Dir | Purpose |
