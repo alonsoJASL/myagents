@@ -3,6 +3,9 @@
     "type": "command",
     "command": "bash -c '$HOME/.claude/statusline.sh'"
   },
+  "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true
+  },
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
@@ -51,6 +54,5 @@
   "effortLevel": "medium",
   "notebooklm-mcp": {
     "command": "notebooklm-mcp"
-  },
-  "model": "haiku"
+  }
 }
