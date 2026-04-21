@@ -2,6 +2,25 @@
 
 Personal Claude Code configuration and workflow tooling.
 
+## Install
+The best way is to symlink the contents of this folder into your own `~/.claude`
+directory.
+
+```bash
+git clone https://github.com/alonsoJASL/myagents 
+cd /path/to/myagents 
+
+mkdir -p ~/.claude/commands # just in case it's not there 
+
+# do one by one 
+ln -s $PWD/CLAUDE.md ~/.claude/ 
+
+ln -s $PWD/commands/myinit.md ~/.claude/commands/ 
+ln -s $PWD/commands/context_migration.md ~/.claude/commands/ 
+ln -s $PWD/commands/export-api.md ~/.claude/commands/ 
+ln -s $PWD/commands/import-api.md ~/.claude/commands/ 
+```
+
 ## What's here
 
 | File/Dir | Purpose |
@@ -11,6 +30,9 @@ Personal Claude Code configuration and workflow tooling.
 | `statusline.sh` | Bash script that renders session metrics (context %, token counts, cost, elapsed time) in the status bar |
 | `commands/myinit.md` | Prompt for the `/myinit` skill — generates a project-level `CLAUDE.md` |
 | `commands/context_migration.md` | Prompt for the `/context_migration` skill — produces a Transition Manifest for resuming across sessions |
+| `commands/resume-skills.md` | Prompt for the `/resume-skills` skill — generates a resume-oriented skills summary of the current project |
+| `commands/export-api.md` | Prompt for the `/export-api` skill — produces a structured API reference file for the current project |
+| `commands/import-api.md` | Prompt for the `/import-api` skill — loads an external project's API reference to inform an implementation task |
 
 ## Key concepts
 
@@ -18,7 +40,17 @@ Personal Claude Code configuration and workflow tooling.
 
 **Custom status line** — `statusline.sh` receives JSON from Claude Code and outputs a compact line showing model, context window usage (with a visual bar), token counts, cost, and session time.
 
-**Slash commands** — `commands/*.md` files define skills invoked as `/myinit` and `/context_migration` within Claude Code sessions.
+**Slash commands** — `commands/*.md` files define skills invoked within Claude Code sessions. Each command is described below.
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `/myinit` | Analyzes the current project and generates a `CLAUDE.md` encoding its architecture, conventions, and key entry points |
+| `/context_migration` | Produces a Transition Manifest — a structured handoff document for resuming work across context windows or sessions |
+| `/resume-skills` | Scans the codebase and outputs a resume-oriented skills summary: concrete technologies and engineering competencies evidenced in the code |
+| `/export-api` | Produces a structured API reference file for the current project, suitable for consumption by another project or orchestrator |
+| `/import-api` | Loads an external project's API reference file and uses it to inform an implementation task in the current project |
 
 ## Requirements
 
