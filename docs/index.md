@@ -11,6 +11,8 @@ title: myagents
 
 You need [Claude Code](https://claude.ai/code) and `git`. That's it.
 
+> Windows install coming sometime later
+
 ```bash
 git clone https://github.com/alonsoJASL/myagents
 cd myagents
@@ -37,7 +39,7 @@ The script handles all the plumbing. Once it finishes, open a new Claude Code se
 - token counts and estimated cost
 - elapsed session time
 
-This one sometimes does not work.
+> This one sometimes does not work.
 
 ### Slash commands
 
@@ -58,7 +60,7 @@ These are skills you can invoke mid-session by typing `/command-name`:
 Two files are worth knowing about:
 
 - **`CLAUDE.md`** — edit this to change the standing instructions Claude receives. Add your own principles, remove ones that don't fit your workflow.
-- **`settings.json`** — controls the status line, spinner messages, effort level, and enabled plugins. The spinner messages in particular are easy and fun to personalise.
+- **`settings.json`** — controls the status line, spinner messages, effort level, and enabled plugins. 
 
 Because everything is installed as a live link back to this repo, any edits you make here take effect immediately in the next Claude Code session, so no reinstall needed.
 
