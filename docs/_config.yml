@@ -1,0 +1,7 @@
+title: myagents
+description: Claude Code configuration and workflow skills by Jose Alonso Solis-Lemus
+theme: minima
+show_excerpts: false
+
+minima:
+  skin: classic
