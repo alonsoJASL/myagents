@@ -3,7 +3,7 @@ layout: home
 title: myagents
 ---
 
-**myagents** is a personal configuration set for [Claude Code](https://claude.ai/code) — the AI coding assistant that runs in your terminal. It wires up a custom developer manifest, a compact status line, and a handful of slash commands that make sessions faster and more structured.
+**myagents** is a personal configuration set for [Claude Code](https://claude.ai/code), the AI coding assistant that runs in your terminal. It wires up a custom developer manifest, a compact status line, and a handful of slash commands that make sessions faster and more structured.
 
 ---
 
@@ -14,7 +14,8 @@ You need [Claude Code](https://claude.ai/code) and `git`. That's it.
 ```bash
 git clone https://github.com/alonsoJASL/myagents
 cd myagents
-./install.sh
+
+./install.sh # This is optional, if you know how to symlink you can just do that
 ```
 
 The script handles all the plumbing. Once it finishes, open a new Claude Code session and everything is active.
@@ -23,11 +24,9 @@ The script handles all the plumbing. Once it finishes, open a new Claude Code se
 
 ## What you get
 
-### Developer manifest
+### José's Developer manifest
 
-`CLAUDE.md` is a set of standing instructions that Claude reads at the start of every session. It encodes architectural principles — things like "separate orchestration from logic", "no singletons or globals", "wait for the Rule of Three before abstracting" — so you never have to re-explain your standards to the model.
-
-Think of it as a one-time briefing that persists across all your projects.
+`CLAUDE.md` is a set of José's standing instructions that Claude reads at the start of every session. It encodes architectural principles, for example things like "separate orchestration from logic", "no singletons or globals", "wait for the Rule of Three before abstracting". That way you never have to re-explain these coding standards to the model.
 
 ### Status line
 
@@ -38,6 +37,8 @@ Think of it as a one-time briefing that persists across all your projects.
 - token counts and estimated cost
 - elapsed session time
 
+This one sometimes does not work.
+
 ### Slash commands
 
 These are skills you can invoke mid-session by typing `/command-name`:
@@ -46,9 +47,9 @@ These are skills you can invoke mid-session by typing `/command-name`:
 |---|---|
 | `/myinit` | Reads the current project and writes a `CLAUDE.md` encoding its architecture, conventions, and entry points |
 | `/context_migration` | Produces a structured handoff document so you can resume seamlessly when the context window fills up |
-| `/resume-skills` | Scans the codebase and outputs a resume-oriented skills summary of the technologies and competencies in the code |
 | `/export-api` | Writes a structured API reference file for the current project, suitable for use by another project or agent |
 | `/import-api` | Loads an external project's API reference and uses it to inform an implementation task in the current project |
+| `/resume-skills` | Scans the codebase and outputs a resume-oriented skills summary of the technologies and competencies in the code |
 
 ---
 
@@ -59,7 +60,7 @@ Two files are worth knowing about:
 - **`CLAUDE.md`** — edit this to change the standing instructions Claude receives. Add your own principles, remove ones that don't fit your workflow.
 - **`settings.json`** — controls the status line, spinner messages, effort level, and enabled plugins. The spinner messages in particular are easy and fun to personalise.
 
-Because everything is installed as a live link back to this repo, any edits you make here take effect immediately in the next Claude Code session — no reinstall needed.
+Because everything is installed as a live link back to this repo, any edits you make here take effect immediately in the next Claude Code session, so no reinstall needed.
 
 ---
 
