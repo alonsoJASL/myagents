@@ -49,7 +49,7 @@ These are skills you can invoke mid-session by typing `/command-name`:
 | `/context_migration` | Produces a structured handoff document so you can resume seamlessly when the context window fills up |
 | `/export-api` | Writes a structured API reference file for the current project, suitable for use by another project or agent |
 | `/import-api` | Loads an external project's API reference and uses it to inform an implementation task in the current project |
-| `/resume-skills` | Scans the codebase and outputs a resume-oriented skills summary of the technologies and competencies in the code |
+<!-- | `/resume-skills` | Scans the codebase and outputs a resume-oriented skills summary of the technologies and competencies in the code | -->
 
 ---
 

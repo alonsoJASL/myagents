@@ -32,7 +32,7 @@ link "$REPO_DIR/statusline.sh"  "$CLAUDE_DIR/statusline.sh"
 
 for cmd in "$REPO_DIR/commands/"*.md; do
   name="$(basename "$cmd")"
-  link "$cmd" "$COMMANDS_DIR/$name"
+  link "$cmd" "$COMMANDS_DIR/$name" 
 done
 
 echo ""
