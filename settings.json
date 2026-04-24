@@ -1,4 +1,5 @@
 {
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "bash -c '$HOME/.claude/statusline.sh'"
@@ -54,5 +55,6 @@
   "effortLevel": "medium",
   "notebooklm-mcp": {
     "command": "notebooklm-mcp"
-  }
+  },
+  "theme": "dark-ansi"
 }
