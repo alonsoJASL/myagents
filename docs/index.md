@@ -52,6 +52,12 @@ These are skills you can invoke mid-session by typing `/command-name`:
 | `/export-api` | Writes a structured API reference file for the current project, suitable for use by another project or agent |
 | `/import-api` | Loads an external project's API reference and uses it to inform an implementation task in the current project |
 | `/resume-skills` | Scans the codebase and outputs a resume-oriented skills summary of the technologies and competencies in the code |
+| `/create-worktree-context` | Scans every worktree of the current repo and writes a shared `WORKTREE_CONTEXT.md` — project architecture, branch map, divergence notes — at the git common directory |
+| `/compare-branches` | Reads `WORKTREE_CONTEXT.md` and compares branches for a specific task, then recommends where new work should land or flags that it already exists |
+
+#### Worktree workflow
+
+`/create-worktree-context` and `/compare-branches` work as a pair. If you keep several long-lived worktrees (e.g. `master`, `development`, a few feature branches), run `/create-worktree-context` once to produce a shared snapshot at the git common directory. After that, `/compare-branches` can answer "where should this new feature go?" or "does this already exist somewhere?" without re-scanning the repo each time. The snapshot can be refreshed on demand — the "Open Items Across Branches" section is preserved across refreshes so your running notes are not overwritten.
 
 ---
 

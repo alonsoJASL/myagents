@@ -13,11 +13,11 @@ link() {
   local src="$1"
   local dst="$2"
   if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-    echo "  ${YELLOW}skipped${NC}  $dst (file already exists and is not a symlink)"
+    echo -e "  ${YELLOW}skipped${NC}  $dst (file already exists and is not a symlink)"
     return
   fi
   ln -sf "$src" "$dst"
-  echo "  ${GREEN}linked${NC}   $dst"
+  echo -e "  ${GREEN}linked${NC}   $dst"
 }
 
 echo ""
