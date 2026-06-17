@@ -53,8 +53,8 @@
     ]
   },
   "effortLevel": "medium",
+  "theme": "dark-ansi",
   "notebooklm-mcp": {
     "command": "notebooklm-mcp"
-  },
-  "theme": "dark-ansi"
+  }
 }
