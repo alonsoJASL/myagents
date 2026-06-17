@@ -1,5 +1,4 @@
-We are approaching a context migration. Generate a Transition Manifest 
-so the next session can resume without a startup phase.
+Generate a Transition Manifest so the next session can resume without a startup phase.
 
 ## Project State
 Current architecture summary and the specific problem we are actively 
