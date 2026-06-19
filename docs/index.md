@@ -1,7 +1,4 @@
----
-layout: home
-title: myagents
----
+# myagents
 
 **myagents** is a personal configuration set for [Claude Code](https://claude.ai/code), the AI coding assistant that runs in your terminal. It wires up a custom developer manifest, a compact status line, and a handful of slash commands that make sessions faster and more structured.
 

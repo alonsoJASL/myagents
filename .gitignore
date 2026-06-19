@@ -1,2 +1,5 @@
 .DS_Store
 presentation.md
+
+# MkDocs build output
+site/
