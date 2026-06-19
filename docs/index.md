@@ -11,16 +11,39 @@ title: myagents
 
 You need [Claude Code](https://claude.ai/code) and `git`. That's it.
 
-> Works on macs and linux. Windows install coming sometime later.
+### macOS / Linux
 
 ```bash
 git clone https://github.com/alonsoJASL/myagents
 cd myagents
 
-./install.sh # This is optional, if you know how to symlink you can just do that
+./install.sh   # optional — if you know how to symlink, you can do that yourself
 ```
 
-The script handles all the plumbing. Once it finishes, open a new Claude Code session and everything is active.
+`install.sh` symlinks `CLAUDE.md`, `settings.json`, `statusline.sh`, and every
+file in `commands/` into `~/.claude`. Because they're live symlinks, later edits
+to the repo take effect in your next session — no reinstall needed.
+
+### Windows
+
+```powershell
+git clone https://github.com/alonsoJASL/myagents
+cd myagents
+
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+Windows can't symlink reliably without elevation, so `install.ps1` **copies** the
+files into `%USERPROFILE%\.claude` instead. Two consequences:
+
+- Because they're copies, re-run `install.ps1 -Force` after editing the repo for
+  your changes to take effect.
+- The status line is bash/jq based and isn't installed on Windows; the installer
+  strips the `statusLine` setting from the copied `settings.json`, so Claude Code
+  uses its default status line. Everything else (model, spinner verbs, theme,
+  effort) is preserved.
+
+Once the installer finishes, open a new Claude Code session and everything is active.
 
 ---
 
@@ -39,7 +62,7 @@ The script handles all the plumbing. Once it finishes, open a new Claude Code se
 - how much of the context window is used
 - your 5-hour and 7-day rate-limit usage
 
-> This one sometimes does not work.
+> macOS / Linux only — it relies on `bash` and `jq`. Windows sessions use Claude Code's default status line.
 
 ### Slash commands
 
@@ -68,11 +91,12 @@ Two files are worth knowing about:
 - **`CLAUDE.md`** — edit this to change the standing instructions Claude receives. Add your own principles, remove ones that don't fit your workflow.
 - **`settings.json`** — controls the model, status line, spinner messages, effort level, theme, and enabled plugins.
 
-Because everything is installed as a live link back to this repo, any edits you make here take effect immediately in the next Claude Code session, so no reinstall needed.
+On macOS / Linux everything is installed as a live symlink back to this repo, so edits take effect in your next Claude Code session — no reinstall needed. On Windows the files are copied, so re-run `install.ps1 -Force` after editing.
 
 ---
 
 ## Requirements
 
 - [Claude Code CLI](https://claude.ai/code)
-- `bash` and `jq` (for the status line)
+- macOS / Linux: `bash` and `jq` (for the status line)
+- Windows: PowerShell 5+ (the status line is not installed on Windows)

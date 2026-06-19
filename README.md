@@ -3,6 +3,8 @@
 Personal Claude Code configuration and workflow tooling.
 
 ## Install
+
+### macOS / Linux
 Clone the repo and run `install.sh`. It symlinks `CLAUDE.md`, `settings.json`,
 `statusline.sh`, and every file in `commands/` into your `~/.claude` directory.
 Existing non-symlink files are skipped rather than overwritten.
@@ -27,6 +29,28 @@ ln -sf $PWD/commands/*.md  ~/.claude/commands/
 
 Because everything is a live symlink back to this repo, edits take effect in the
 next Claude Code session — no reinstall needed.
+
+### Windows
+Clone the repo and run `install.ps1`. Windows can't symlink reliably without
+elevation, so it **copies** `CLAUDE.md`, `settings.json`, and every file in
+`commands/` into `%USERPROFILE%\.claude`. Existing files are skipped unless you
+pass `-Force`.
+
+```powershell
+git clone https://github.com/alonsoJASL/myagents
+cd myagents
+
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+Two Windows-specific notes:
+
+- **Edits don't auto-apply.** Because the files are copied rather than symlinked,
+  re-run `install.ps1` (with `-Force`) after editing anything in the repo.
+- **No custom status line.** `statusline.sh` is bash/jq based and isn't installed
+  on Windows; the installer strips the `statusLine` setting from the copied
+  `settings.json`, so Claude Code uses its default status line. Everything else
+  in `settings.json` (model, spinner verbs, theme, effort) is preserved.
 
 ## What's here
 
@@ -70,4 +94,5 @@ next Claude Code session — no reinstall needed.
 ## Requirements
 
 - Claude Code CLI
-- `bash` and `jq` (for the status line script)
+- macOS / Linux: `bash` and `jq` (for the status line script)
+- Windows: PowerShell 5+ (the status line is not installed on Windows)
