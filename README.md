@@ -3,31 +3,38 @@
 Personal Claude Code configuration and workflow tooling.
 
 ## Install
-The best way is to symlink the contents of this folder into your own `~/.claude`
-directory.
+Clone the repo and run `install.sh`. It symlinks `CLAUDE.md`, `settings.json`,
+`statusline.sh`, and every file in `commands/` into your `~/.claude` directory.
+Existing non-symlink files are skipped rather than overwritten.
 
 ```bash
-git clone https://github.com/alonsoJASL/myagents 
-cd /path/to/myagents 
+git clone https://github.com/alonsoJASL/myagents
+cd myagents
 
-mkdir -p ~/.claude/commands # just in case it's not there 
-
-# do one by one 
-ln -s $PWD/CLAUDE.md ~/.claude/ 
-
-ln -s $PWD/commands/myinit.md ~/.claude/commands/ 
-ln -s $PWD/commands/context_migration.md ~/.claude/commands/ 
-ln -s $PWD/commands/export-api.md ~/.claude/commands/ 
-ln -s $PWD/commands/import-api.md ~/.claude/commands/ 
+./install.sh
 ```
+
+Prefer to do it by hand? Symlink the same files yourself:
+
+```bash
+mkdir -p ~/.claude/commands
+
+ln -sf $PWD/CLAUDE.md      ~/.claude/CLAUDE.md
+ln -sf $PWD/settings.json  ~/.claude/settings.json
+ln -sf $PWD/statusline.sh  ~/.claude/statusline.sh
+ln -sf $PWD/commands/*.md  ~/.claude/commands/
+```
+
+Because everything is a live symlink back to this repo, edits take effect in the
+next Claude Code session — no reinstall needed.
 
 ## What's here
 
 | File/Dir | Purpose |
 |---|---|
 | `CLAUDE.md` | Developer manifest — architectural principles and directives applied globally to all Claude Code sessions |
-| `settings.json` | Claude Code configuration: status line, spinner verbs, effort level |
-| `statusline.sh` | Bash script that renders session metrics (context %, token counts, cost, elapsed time) in the status bar |
+| `settings.json` | Claude Code configuration: model, status line, spinner verbs, effort level, theme, enabled plugins |
+| `statusline.sh` | Bash script that renders the status bar: working directory, model, context window usage, and 5-hour / 7-day rate-limit usage |
 | `commands/myinit.md` | Prompt for the `/myinit` skill — generates a project-level `CLAUDE.md` |
 | `commands/context_migration.md` | Prompt for the `/context_migration` skill — produces a Transition Manifest for resuming across sessions |
 | `commands/resume-skills.md` | Prompt for the `/resume-skills` skill — generates a resume-oriented skills summary of the current project |
@@ -40,7 +47,7 @@ ln -s $PWD/commands/import-api.md ~/.claude/commands/
 
 **Developer manifest (`CLAUDE.md`)** — Encodes Jose's non-negotiables: separate orchestration from logic, explicit data contracts, stateless components, no singletons, no globals, dependency injection everywhere, Rule of Three before abstracting.
 
-**Custom status line** — `statusline.sh` receives JSON from Claude Code and outputs a compact line showing model, context window usage (with a visual bar), token counts, cost, and session time.
+**Custom status line** — `statusline.sh` receives JSON from Claude Code and outputs a compact line showing the working directory, model, context window usage, and 5-hour / 7-day rate-limit usage.
 
 **Slash commands** — `commands/*.md` files define skills invoked within Claude Code sessions. Each command is described below.
 

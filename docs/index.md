@@ -34,10 +34,10 @@ The script handles all the plumbing. Once it finishes, open a new Claude Code se
 
 `statusline.sh` adds a live info bar to every Claude Code session showing:
 
+- the working directory
 - which model is running
-- how much of the context window is used (with a visual bar)
-- token counts and estimated cost
-- elapsed session time
+- how much of the context window is used
+- your 5-hour and 7-day rate-limit usage
 
 > This one sometimes does not work.
 
@@ -66,7 +66,7 @@ These are skills you can invoke mid-session by typing `/command-name`:
 Two files are worth knowing about:
 
 - **`CLAUDE.md`** — edit this to change the standing instructions Claude receives. Add your own principles, remove ones that don't fit your workflow.
-- **`settings.json`** — controls the status line, spinner messages, effort level, and enabled plugins. 
+- **`settings.json`** — controls the model, status line, spinner messages, effort level, theme, and enabled plugins.
 
 Because everything is installed as a live link back to this repo, any edits you make here take effect immediately in the next Claude Code session, so no reinstall needed.
 
