@@ -1,0 +1,35 @@
+# Profile contract consumed by the scaffold-docs orchestrator.
+# All language-specific behaviour lives here; SKILL.md stays generic.
+name: cpp
+description: C or C++ project (CMake / Make / Meson).
+
+# Files whose presence confirms the cwd is this kind of project root.
+root_markers:
+  - CMakeLists.txt
+  - Makefile
+  - meson.build
+root_marker_mode: exact
+
+engine: mkdocs-material
+
+# C/C++ API docs are produced by Doxygen and surfaced inside MkDocs via the
+# mkdoxy plugin, so the whole site stays one Material build. mkdoxy runs
+# Doxygen for you; the standalone Doxyfile is only for driving Doxygen by hand.
+api_backend: doxygen
+api_backend_default_enabled: true
+
+install_deps:
+  base: [mkdocs-material]
+  api: [mkdoxy]
+system_deps: [doxygen]           # installed via apt/brew in CI, not pip
+
+# No PyPI analogue. A GitHub-release artifact workflow could be added later.
+publish: none
+publish_default_enabled: false
+
+nav_default:
+  - Home
+  - Getting Started
+  - Architecture
+  - API Reference
+  - Developer Guides

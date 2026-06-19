@@ -1,0 +1,9 @@
+# Python API backend (profile: python, api_backend: mkdocstrings).
+# Merge this entry into the `plugins:` list in mkdocs.yml to auto-generate API
+# docs from docstrings, and append `mkdocstrings[python]` to the docs CI install
+# step. Render a symbol in any markdown page with:  ::: package.module.Symbol
+- mkdocstrings:
+    handlers:
+      python:
+        options:
+          show_source: false

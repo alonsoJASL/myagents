@@ -24,6 +24,7 @@ $ErrorActionPreference = 'Stop'
 $RepoDir     = $PSScriptRoot
 $ClaudeDir   = Join-Path $env:USERPROFILE '.claude'
 $CommandsDir = Join-Path $ClaudeDir 'commands'
+$SkillsDir   = Join-Path $ClaudeDir 'skills'
 
 function Copy-Item-Tracked {
     param(
@@ -65,6 +66,24 @@ if ((Test-Path $SettingsDst) -and -not $Force) {
 # commands/*.md
 Get-ChildItem -Path (Join-Path $RepoDir 'commands') -Filter '*.md' | ForEach-Object {
     Copy-Item-Tracked $_.FullName (Join-Path $CommandsDir $_.Name)
+}
+
+# Skills (each is a directory containing SKILL.md). Copied recursively, assets
+# and all. Existing skill dirs are replaced only with -Force.
+New-Item -ItemType Directory -Path $SkillsDir -Force | Out-Null
+Get-ChildItem -Path $RepoDir -Directory | Where-Object {
+    Test-Path (Join-Path $_.FullName 'SKILL.md')
+} | ForEach-Object {
+    $dst = Join-Path $SkillsDir $_.Name
+    if ((Test-Path $dst) -and -not $Force) {
+        Write-Host "  skipped  " -ForegroundColor Yellow -NoNewline
+        Write-Host "$dst (already exists; use -Force to overwrite)"
+    } else {
+        if (Test-Path $dst) { Remove-Item -Path $dst -Recurse -Force }
+        Copy-Item -Path $_.FullName -Destination $dst -Recurse -Force
+        Write-Host "  copied   " -ForegroundColor Green -NoNewline
+        Write-Host $dst
+    }
 }
 
 Write-Host ""

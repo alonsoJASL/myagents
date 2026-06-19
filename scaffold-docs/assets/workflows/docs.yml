@@ -1,0 +1,65 @@
+# Copy to .github/workflows/docs.yml. Builds the MkDocs site and deploys to
+# GitHub Pages. The skill fills the install steps from the chosen profile:
+#   - "Install system dependencies" is kept ONLY when system_deps is non-empty
+#     (the C++ profile needs the doxygen binary); delete it otherwise.
+#   - "Install MkDocs and plugins" is filled from install_deps.base (+ .api when
+#     an API backend is enabled).
+# Requires: repo Settings → Pages → Source = "GitHub Actions".
+name: Deploy docs to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+  workflow_dispatch:
+
+# Allow only one concurrent deployment; do not cancel an in-progress run.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # C++ profile only — Doxygen is a system package, not a pip install.
+      # The skill removes this step for profiles whose system_deps is empty.
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y doxygen
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install MkDocs and plugins
+        # Filled from the profile: base deps (+ api-backend deps if enabled).
+        run: pip install mkdocs-material
+
+      - name: Build site
+        # --strict fails the build on broken internal links. Keep it on.
+        run: mkdocs build --strict --site-dir _site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    # Grant GITHUB_TOKEN the permissions required to deploy to Pages.
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,68 @@
+# Generic MkDocs + Material config for the scaffold-docs skill.
+# Copy to the repo root and fill the FILL-IN markers. The theme /
+# markdown_extensions / plugins blocks are generic — keep them identical so the
+# site always has the same look. Owner/repo fields are derived from
+# `git remote get-url origin`.
+
+site_name: FILL-IN-project-name
+site_description: FILL-IN-one-line-description
+site_url: https://FILL-IN-owner.github.io/FILL-IN-repo/
+repo_url: https://github.com/FILL-IN-owner/FILL-IN-repo
+repo_name: FILL-IN-owner/FILL-IN-repo
+
+theme:
+  name: material
+  palette:
+    # Any Material colour pair. Pick one and keep both schemes consistent.
+    - scheme: default
+      primary: FILL-IN-colour            # e.g. indigo, teal, green, red
+      accent: FILL-IN-accent             # e.g. deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: FILL-IN-colour
+      accent: FILL-IN-accent
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search
+  # The API-backend plugin block (mkdocstrings or mkdoxy) is injected here by
+  # the skill from assets/api-backends/ when the profile enables one.
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+# Nav is filled from the profile's nav_default and pruned to real pages.
+# Keep section ordering; delete sections the project lacks. Never reorder.
+nav:
+  - Home: index.md

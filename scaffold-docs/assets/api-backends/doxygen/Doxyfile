@@ -1,0 +1,14 @@
+# Minimal Doxyfile for standalone Doxygen runs. OPTIONAL — mkdoxy runs Doxygen
+# for you, so you only need this if you drive Doxygen yourself. To get a full
+# default config, run `doxygen -g` and merge these key settings into it.
+PROJECT_NAME           = "FILL-IN-project-name"
+OUTPUT_DIRECTORY       = docs/_doxygen
+INPUT                  = FILL-IN-source-dir
+FILE_PATTERNS          = *.cpp *.h *.hpp *.cc *.cxx
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_XML           = YES
+XML_OUTPUT             = xml
+QUIET                  = YES

@@ -1,0 +1,44 @@
+# Profile contract consumed by the scaffold-docs orchestrator.
+# All language-specific behaviour lives here; SKILL.md stays generic.
+name: python
+description: Python library or application (non-suite).
+
+# Files whose presence confirms the cwd is this kind of project root.
+# Step 0 detection matches any of these (exact filenames).
+root_markers:
+  - pyproject.toml
+  - setup.py
+  - setup.cfg
+root_marker_mode: exact
+
+# Documentation engine is always MkDocs + Material across every profile.
+engine: mkdocs-material
+
+# API reference backend. One of: none | mkdocstrings | doxygen.
+# Python can auto-generate from docstrings via mkdocstrings, but defaults to
+# hand-written API pages (matches the reference suite). The skill asks before
+# enabling it.
+api_backend: mkdocstrings
+api_backend_default_enabled: false
+
+# Packages needed to build the docs in CI and locally.
+# `api` deps are appended to `base` only when the api backend is enabled.
+install_deps:
+  base: [mkdocs-material]
+  api: ["mkdocstrings[python]"]
+system_deps: []                  # no non-pip system tools
+
+# Release/publish workflow. One of: none | pypi | github-release.
+# Opt-in: the skill asks before adding publish-pypi.yml.
+publish: pypi
+publish_default_enabled: false
+
+# Default nav spine. Sections are pruned if the repo lacks them; never reordered.
+nav_default:
+  - Home
+  - Getting Started
+  - Tutorials
+  - Architecture
+  - API Reference
+  - CLI
+  - Developer Guides

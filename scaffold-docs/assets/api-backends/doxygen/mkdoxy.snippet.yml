@@ -1,0 +1,13 @@
+# C/C++ API backend (profile: cpp, api_backend: doxygen).
+# Merge this entry into the `plugins:` list in mkdocs.yml to surface Doxygen-
+# parsed API docs inside the Material site. Requires the `doxygen` binary on
+# PATH and `pip install mkdoxy`. mkdoxy runs Doxygen for you, so the standalone
+# Doxyfile in this folder is only needed if you prefer to drive Doxygen yourself.
+- mkdoxy:
+    projects:
+      api:                                   # generates pages under api/
+        src-dirs: FILL-IN-source-dir         # e.g. "src include"
+        full-doc: true
+        doxy-cfg:
+          FILE_PATTERNS: "*.cpp *.h *.hpp *.cc *.cxx"
+          RECURSIVE: true

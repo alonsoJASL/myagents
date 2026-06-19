@@ -1,0 +1,29 @@
+# Profile contract consumed by the scaffold-docs orchestrator.
+# All language-specific behaviour lives here; SKILL.md stays generic.
+name: markdown
+description: Docs-only / plain-markdown repository (handbook, notes, spec).
+
+# A markdown repo has no build manifest, so detection is a fallback: a git repo
+# that contains markdown but none of the other profiles' exact markers.
+root_markers:
+  - "*.md"
+root_marker_mode: glob
+
+engine: mkdocs-material
+
+api_backend: none
+api_backend_default_enabled: false
+
+install_deps:
+  base: [mkdocs-material]
+  api: []
+system_deps: []
+
+publish: none
+publish_default_enabled: false
+
+# No code, so no API / CLI / code-architecture sections by default.
+nav_default:
+  - Home
+  - Getting Started
+  - Developer Guides
