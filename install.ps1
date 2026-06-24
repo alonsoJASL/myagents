@@ -16,10 +16,20 @@
   Overwrite files that already exist. Without it, existing files are skipped.
 #>
 param(
-    [switch]$Force
+    [switch]$Force,
+    [switch]$Agy,
+    [switch]$Gemini
 )
 
 $ErrorActionPreference = 'Stop'
+
+if ($Agy -or $Gemini) {
+    $forceArg = ""
+    if ($Force) { $forceArg = "--force" }
+    # Invoke the python helper script (Windows copies files by default via --copy)
+    python (Join-Path $PSScriptRoot 'install_agy.py') --copy $forceArg
+    exit
+}
 
 $RepoDir     = $PSScriptRoot
 $ClaudeDir   = Join-Path $env:USERPROFILE '.claude'

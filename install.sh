@@ -6,6 +6,26 @@ CLAUDE_DIR="$HOME/.claude"
 COMMANDS_DIR="$CLAUDE_DIR/commands"
 SKILLS_DIR="$CLAUDE_DIR/skills"
 
+# Parse arguments for agy/gemini installation
+INSTALL_AGY=false
+FORCE_FLAG=""
+
+for arg in "$@"; do
+  case "$arg" in
+    --agy|--gemini)
+      INSTALL_AGY=true
+      ;;
+    --force|-f)
+      FORCE_FLAG="--force"
+      ;;
+  esac
+done
+
+if [ "$INSTALL_AGY" = true ]; then
+  python3 "$REPO_DIR/install_agy.py" $FORCE_FLAG
+  exit 0
+fi
+
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'

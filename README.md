@@ -56,6 +56,27 @@ Two Windows-specific notes:
   `settings.json`, so Claude Code uses its default status line. Everything else
   in `settings.json` (model, spinner verbs, theme, effort) is preserved.
 
+### Google Antigravity (agy) / Gemini CLI (Optional)
+
+You can optionally install the manifest rules and skills for Google Antigravity (`agy`) by passing the `--agy` or `--gemini` flags.
+
+#### macOS / Linux
+```bash
+./install.sh --agy
+```
+
+#### Windows
+```powershell
+powershell -ExecutionPolicy Bypass -File install.ps1 -Agy
+```
+
+This runs a helper Python script (`install_agy.py`) under the hood which:
+- Symlinks (or copies on Windows) `CLAUDE.md` verbatim to `~/.gemini/GEMINI.md` and `~/.gemini/config/agents/AGENTS.md`.
+- Symlinks (or copies on Windows) the `scaffold-docs` skill to `~/.gemini/antigravity-cli/skills/` and `~/.gemini/config/skills/`.
+- Dynamically translates each legacy command file in `commands/*.md` into an agy-compliant skill structure (wrapping it with correct YAML frontmatter) and places them under both global skills paths.
+
+Like the Claude installation, subsequent edits to rules or skills (like `scaffold-docs`) automatically take effect in the next agent session because they are live symlinks (except on Windows where they are copied).
+
 ## What's here
 
 | File/Dir | Purpose |

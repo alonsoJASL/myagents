@@ -52,7 +52,7 @@
       "Are you aware of how much water this stupid prompt uses?"
     ]
   },
-  "effortLevel": "medium",
+  "effortLevel": "xhigh",
   "theme": "dark-ansi",
   "notebooklm-mcp": {
     "command": "notebooklm-mcp"

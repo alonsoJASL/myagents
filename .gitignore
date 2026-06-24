@@ -3,3 +3,6 @@ presentation.md
 
 # MkDocs build output
 site/
+
+.agents/**
+.agents/
